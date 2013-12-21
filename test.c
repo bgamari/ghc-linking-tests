@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int external();
-int internal();
+int internal_ext();
 
 void hello() {
         printf("hello world!\n");
@@ -9,7 +9,7 @@ void hello() {
 
 int main(int argc, char** argv) {
         external();
-        internal();
+        internal_ext();
         hello();
         return 0;
 }

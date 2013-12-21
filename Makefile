@@ -1,7 +1,9 @@
-test : test.o libtest.so
-	gcc -dynamic $< -L. -ltest -o $@ 
+test : test.o libtest2.so
+	gcc -dynamic $< -L. -ltest2 -o $@ 
 
-libtest.so : libtest.c
+
+# libtest
+libtest.so : libtest.o
 	gcc -shared -fPIC -o $@ $<
 
 %.o : %.c
@@ -10,5 +12,18 @@ libtest.so : libtest.c
 %.ll : %.c
 	clang -S -emit-llvm -o $@ $<
 
+
+# libtest2
+libtest2.so : libtest2.o
+	gcc -shared -fPIC -o $@ $<
+
+%.s : %.ll
+	llc -relocation-model=pic -o $@ $<
+
+%.o : %.s
+	as -o $@ $<
+
+
+# Other rules
 clean :
 	git clean -f

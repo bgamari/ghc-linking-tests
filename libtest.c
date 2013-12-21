@@ -1,4 +1,4 @@
-int internal() {
+static int internal() {
         return 5;
 }
 
