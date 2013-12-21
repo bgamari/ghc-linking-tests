@@ -1,12 +1,14 @@
-libtest.so : libtest.o
-	gcc -shared -o $@ $<
+test : test.o libtest.so
+	gcc -dynamic $< -L. -ltest -o $@ 
+
+libtest.so : libtest.c
+	gcc -shared -fPIC -o $@ $<
 
 %.o : %.c
-	clang -o $@ $<
+	clang -c -fPIC -o $@ $<
 	
 %.ll : %.c
 	clang -S -emit-llvm -o $@ $<
 
-test : test.o libtest.so
-	gcc -dynamic $< -ltest -o $@ 
-
+clean :
+	git clean -f
