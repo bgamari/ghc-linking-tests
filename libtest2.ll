@@ -7,8 +7,12 @@ define i32 @external() nounwind uwtable {
   ret i32 %2
 }
 
+; This is an internal function which will be called directly 
+; but can't be called from outside of this object
 define internal i32 @internal() nounwind uwtable {
   ret i32 5
 }
 
+; This is an alias to the internal function which can be called from
+; outside of this object but only through the PLT
 @internal_ext = alias external i32 () * @internal
