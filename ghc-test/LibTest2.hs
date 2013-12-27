@@ -2,5 +2,9 @@ module LibTest2 where
 
 import LibTest
 
-helloWorld2 = helloWorld
+{-# NOINLINE helloWorld2 #-}
+helloWorld2 :: IO ()
+helloWorld2 = do
+    helloWorld
+    putStrLn "2"
 
