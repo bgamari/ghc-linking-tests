@@ -3,9 +3,9 @@ module LibTest2 where
 import LibTest
 
 {-# NOINLINE testHelloWorld #-}
-testHelloWorld :: IO ()
+testHelloWorld :: IO String
 testHelloWorld = do
-    putStrLn $ helloWorld
+    return helloWorld
 
 {-# NOINLINE testInfoRef #-}
 testInfoRef :: IO Int

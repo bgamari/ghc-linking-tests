@@ -8,5 +8,5 @@ helloWorld = "Hello World!"
 
 {-# NOINLINE infoRef #-}
 infoRef :: Int -> Int
-infoRef n = let !n' = n+1 in n'
+infoRef n = let n' = n+1 in n'
 
